@@ -1,0 +1,23 @@
+.boton-activo {
+    background-color: rgb(26, 22, 131);
+    color: rgb(255, 255, 255);
+}
+
+
+#card {
+    background-color: rgb(230, 230, 230);
+    box-shadow:rgb(49, 0, 128);
+    width: 400px;
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+#app {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}

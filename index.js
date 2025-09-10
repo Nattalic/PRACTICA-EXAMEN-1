@@ -13,12 +13,13 @@ function mostrarLugares(lugares) {
     
     const lugaresCard = document.createElement("div")
     lugaresCard.classList.add("lugaresCard")
-    lugaresCard.id
+    lugaresCard.id = 'card'
     console.log(lugaresCard)
 
 
     lugaresCard.innerHTML = `
     <h2>${lugar.destino}</h2>
+    <img src=${lugar.imagen}/>
     <p>Duración: ${lugar.duracion} semanas </p>
     <p>Costo:  $${lugar.costo}</p>
     <p>Descripción: ${lugar.descripcion}</p>
@@ -30,28 +31,24 @@ function mostrarLugares(lugares) {
     //como hacer la imagen
 
     const btnReservado = document.createElement("button")
-    btnReservado.textContent = "Reservar"
+    btnReservado.textContent = lugar.reservado ? "Reservado" : "Reservar"
 
+    let isReserved = lugar.reservado
 
+    btnReservado.addEventListener('click' ,() =>{ 
+    btnReservado.classList.toggle("boton-activo")
 
-
+    btnReservado.textContent = isReserved ? 'Reservar' : 'Reservado' //true y false 
+    isReserved = !isReserved
+    })
 
 
     lugaresCard.appendChild(btnReservado)
-
-
-
-
-
-
     app.appendChild(lugaresCard)
     
 
     
     
-
-
-
     })
         
 

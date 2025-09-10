@@ -1,5 +1,4 @@
-
- [
+[
         {
             "id": 1,
             "destino": "París, Francia",
@@ -11,8 +10,8 @@
                 "Cena en barco por el Sena",
                 "Museos"
             ],
-            "reservado": false,
-            "imagen": "paris.jpg",
+            "reservado": true,
+            "imagen": "https://picsum.photos/200/300?random=1",
             "calificacion": 4.8,
             "alojamiento": "Hotel 5 estrellas",
             "guia_incluido": true
@@ -29,7 +28,7 @@
                 "Fotografía"
             ],
             "reservado": false,
-            "imagen": "machu_picchu.jpg",
+            "imagen": "https://picsum.photos/200/300?random=2",
             "calificacion": 4.9,
             "alojamiento": "Hostal turístico",
             "guia_incluido": true
@@ -46,7 +45,7 @@
                 "Central Park"
             ],
             "reservado": true,
-            "imagen": "nyc.jpg",
+            "imagen": "https://picsum.photos/200/300?random=3",
             "calificacion": 4.7,
             "alojamiento": "Hotel 4 estrellas",
             "guia_incluido": false
@@ -63,7 +62,7 @@
                 "Gastronomía local"
             ],
             "reservado": false,
-            "imagen": "santorini.jpg",
+            "imagen": "https://picsum.photos/200/300?random=4",
             "calificacion": 4.8,
             "alojamiento": "Cabaña privada",
             "guia_incluido": false
@@ -80,7 +79,7 @@
                 "Gastronomía"
             ],
             "reservado": true,
-            "imagen": "tokio.jpg",
+            "imagen": "https://picsum.photos/200/300?random=5",
             "calificacion": 4.9,
             "alojamiento": "Hotel cápsula",
             "guia_incluido": true
@@ -97,7 +96,7 @@
                 "Fontana di Trevi"
             ],
             "reservado": false,
-            "imagen": "roma.jpg",
+            "imagen": "https://picsum.photos/200/300?random=",
             "calificacion": 4.8,
             "alojamiento": "Hotel boutique",
             "guia_incluido": true
@@ -114,7 +113,7 @@
                 "Exploración de templos"
             ],
             "reservado": false,
-            "imagen": "bali.jpg",
+            "imagen": "https://picsum.photos/200/300?random=",
             "calificacion": 4.7,
             "alojamiento": "Resort frente al mar",
             "guia_incluido": false
@@ -131,7 +130,7 @@
                 "Museo Británico"
             ],
             "reservado": false,
-            "imagen": "londres.jpg",
+            "imagen": "https://picsum.photos/200/300?random=",
             "calificacion": 4.6,
             "alojamiento": "Hotel 3 estrellas",
             "guia_incluido": true
@@ -148,7 +147,7 @@
                 "Compras en Dubai Mall"
             ],
             "reservado": true,
-            "imagen": "dubai.jpg",
+            "imagen": "https://picsum.photos/200/300?random=",
             "calificacion": 4.9,
             "alojamiento": "Hotel 7 estrellas",
             "guia_incluido": false
@@ -165,7 +164,7 @@
                 "Zoológico Taronga"
             ],
             "reservado": false,
-            "imagen": "sidney.jpg",
+            "imagen": "https://picsum.photos/200/300?random=",
             "calificacion": 4.7,
             "alojamiento": "Hotel 5 estrellas",
             "guia_incluido": true
@@ -182,7 +181,7 @@
                 "Playas del Mediterráneo"
             ],
             "reservado": false,
-            "imagen": "barcelona.jpg",
+            "imagen": "https://picsum.photos/200/300?random=",
             "calificacion": 4.8,
             "alojamiento": "Apartamento turístico",
             "guia_incluido": true
@@ -199,7 +198,7 @@
                 "Casa de Ana Frank"
             ],
             "reservado": false,
-            "imagen": "amsterdam.jpg",
+            "imagen": "https://picsum.photos/200/300?random=",
             "calificacion": 4.6,
             "alojamiento": "Hotel boutique",
             "guia_incluido": false
@@ -216,7 +215,7 @@
                 "Carnaval"
             ],
             "reservado": false,
-            "imagen": "rio.jpg",
+            "imagen": "https://picsum.photos/200/300?random=",
             "calificacion": 4.7,
             "alojamiento": "Resort",
             "guia_incluido": true
