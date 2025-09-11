@@ -1,56 +1,62 @@
-// Traemos los datos del JSON con fetch
-fetch ("lugares.json") //fetch funcion asincronica , aviseme cuando llegue (nose cuando) aviseme para yo poder hacer la sgte accion
-.then ((response) => { 
-    return response.json()
-})
-.then ((lugares) => mostrarLugares (lugares))
+fetch("destinos.json") // Fetch obtención de elementos (archivos, apis)
+  // Fetch es una operacion asincronica, cuando llegue (no se cuando) aviseme para yo poder hacer la siguiente accion
+  .then((response) => {
+    // Parametro hace referencia a lo que yo estoy recibiendo, puede tener cualquier nombre, como un parametro de una funcion
+    return response.json(); // Convertir de texto plano, a un objeto de js
+  })
+  .then((destinos) => mostrarDestinos(destinos));
 
-function mostrarLugares(lugares) {
-    console.log(lugares)
-    const app = document.getElementById("app")
+function mostrarDestinos(destinos) {
+  // Estara dentro de esta funcion toda la manipulacion
 
-    lugares.forEach(lugar => {
-    
-    const lugaresCard = document.createElement("div")
-    lugaresCard.classList.add("lugaresCard")
-    lugaresCard.id = 'card'
-    console.log(lugaresCard)
+  destinos.forEach((destino) => {
+    const destinoCard = document.createElement("div");
+    destinoCard.id = "card";
 
+    const destinoId = destino.id;
 
-    lugaresCard.innerHTML = `
-    <h2>${lugar.destino}</h2>
-    <img src=${lugar.imagen}/>
-    <p>Duración: ${lugar.duracion} semanas </p>
-    <p>Costo:  $${lugar.costo}</p>
-    <p>Descripción: ${lugar.descripcion}</p>
-    <p>Actividades: ${lugar.actividades}</p>
-    <p>Alojamiento: ${lugar.alojamiento}</p>
-    <p>Calificación: ${lugar.calificacion}</p>
-    `
-    
-    //como hacer la imagen
+    destinoCard.innerHTML = `
+            <h2>${destino.destino}</h2>
+            <img src=${destino.imagen} />
+            <h3>Tiempo de duración: ${destino.duracion} semanas</h3>
+            <h4>${destino.costo}</h4>
+            <p>${destino.descripcion}</p>
+            <p>${destino.actividades}</p>
+            <p>${destino.calificacion}</p>
+            <p>${destino.alojamiento}</p>
+        `;
 
-    const btnReservado = document.createElement("button")
-    btnReservado.textContent = lugar.reservado ? "Reservado" : "Reservar"
+    const reservarBtn = document.createElement("button");
 
-    let isReserved = lugar.reservado
+    const reservedStorageString =
+      localStorage.getItem("reservedStorage") || "{}";
+    const reservedStorage = JSON.parse(reservedStorageString);
 
-    btnReservado.addEventListener('click' ,() =>{ 
-    btnReservado.classList.toggle("boton-activo")
+    let isReserved = destino.reservado; // Por defecto toma lo que dice el JSON
+    reservarBtn.textContent = isReserved ? "Reservado" : "Reservar"; // Lo mismo acá
 
-    btnReservado.textContent = isReserved ? 'Reservar' : 'Reservado' //true y false 
-    isReserved = !isReserved
-    })
+    if (reservedStorage[destino.id] !== undefined) {
+      // Pero si hay información en localStorage, le creeremos al localStorage primero
+      reservarBtn.textContent = reservedStorage[destino.id]
+        ? "Reservado"
+        : "Reservar";
+      isReserved = reservedStorage[destino.id];
+    }
+    reservarBtn.className = isReserved ? "boton-activo" : "";
+    console.log(reservarBtn, isReserved);
 
+    reservarBtn.addEventListener("click", () => {
+      reservarBtn.className = isReserved ? "" : "boton-activo";
+      reservarBtn.textContent = isReserved ? "Reservar" : "Reservado";
+      isReserved = !isReserved;
+      const reservedStorageString =
+        localStorage.getItem("reservedStorage") || "{}";
+      const reservedStorage = JSON.parse(reservedStorageString);
+      reservedStorage[destino.id] = isReserved;
+      localStorage.setItem("reservedStorage", JSON.stringify(reservedStorage));
+    });
+    destinoCard.appendChild(reservarBtn);
 
-    lugaresCard.appendChild(btnReservado)
-    app.appendChild(lugaresCard)
-    
-
-    
-    
-    })
-        
-
-
+    app.appendChild(destinoCard);
+  });
 }
