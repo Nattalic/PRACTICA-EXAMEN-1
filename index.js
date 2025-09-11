@@ -15,6 +15,7 @@ function mostrarDestinos(destinos) {
 
     const destinoId = destino.id;
 
+    //mostrar informacion en la pagina
     destinoCard.innerHTML = `
             <h2>${destino.destino}</h2>
             <img src=${destino.imagen} />
