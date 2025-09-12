@@ -1,21 +1,26 @@
-fetch("destinos.json") // Fetch obtención de elementos (archivos, apis)
-  // Fetch es una operacion asincronica, cuando llegue (no se cuando) aviseme para yo poder hacer la siguiente accion
+// Se obtiene el archivo destinos.json usando fetch
+fetch("destinos.json") // Fetch: obtener recursos (archivos, APIs externas)
+  // fetch es asincrónico = no sabemos cuándo responderá
   .then((response) => {
-    // Parametro hace referencia a lo que yo estoy recibiendo, puede tener cualquier nombre, como un parametro de una funcion
-    return response.json(); // Convertir de texto plano, a un objeto de js
+    // "response" es la respuesta que envía el servidor
+    return response.json() // Convierte la respuesta (texto plano) a un objeto JS
   })
-  .then((destinos) => mostrarDestinos(destinos));
+  .then((destinos) => mostrarDestinos(destinos)) // Cuando ya tenemos el objeto convertido, llamamos a mostrarDestinos()
 
+
+// Función que crea las tarjetas de cada destino
 function mostrarDestinos(destinos) {
-  // Estara dentro de esta funcion toda la manipulacion
 
-  destinos.forEach((destino) => {
-    const destinoCard = document.createElement("div");
-    destinoCard.id = "card";
+  // Recorremos cada destino y creamos su tarjeta (card)
+  destinos.forEach((destino) => { 
 
-    const destinoId = destino.id;
+    //crramos el contenedor donde va a ir toda la info de destinos
+    const destinoCard = document.createElement("div")
+    destinoCard.id = "card" // Le asignamos un id
 
-    //mostrar informacion en la pagina
+    // Usamos innerHTML para mostrar la información del destino en la tarjeta
+    //este tmb se puede hacer por separado
+
     destinoCard.innerHTML = `
             <h2>${destino.destino}</h2>
             <img src=${destino.imagen} />
@@ -25,45 +30,56 @@ function mostrarDestinos(destinos) {
             <p>${destino.actividades}</p>
             <p>${destino.calificacion}</p>
             <p>${destino.alojamiento}</p>
-        `;
+        `
 
+    
+    //se crea el boton de reserva
+    const reservarBtn = document.createElement("button")
 
-    //crear boton de reservado
-    const reservarBtn = document.createElement("button");
-
+    // Revisamos si ya existe información guardada en localStorage
+    // Si no hay nada guardado, ponemos {} como objeto vacío
     const reservedStorageString =
-      localStorage.getItem("reservedStorage") || "{}";
-    const reservedStorage = JSON.parse(reservedStorageString);
+      localStorage.getItem("reservedStorage") || "{}"
+    const reservedStorage = JSON.parse(reservedStorageString)
 
-    //para que el boton cambie de color al darle click y que cambie el texto
-    let isReserved = destino.reservado; // Por defecto toma lo que dice el JSON
-    reservarBtn.textContent = isReserved ? "Reservado" : "Reservar"; // Lo mismo acá
+    // estado inicial : se toma el valor "reservado" del JSON por defecto
+    let isReserved = destino.reservado
+    reservarBtn.textContent = isReserved ? "Reservado" : "Reservar"
 
+    // Pero si hay información en localStorage, esa tiene prioridad
     if (reservedStorage[destino.id] !== undefined) {
-      // Pero si hay información en localStorage, le creeremos al localStorage primero
       reservarBtn.textContent = reservedStorage[destino.id]
         ? "Reservado"
-        : "Reservar";
-      isReserved = reservedStorage[destino.id];
+        : "Reservar"
+      isReserved = reservedStorage[destino.id]
     }
-    reservarBtn.className = isReserved ? "boton-activo" : "";
-    console.log(reservarBtn, isReserved);
 
+    // Clase CSS según el estado actual (para el color del botón)
+    reservarBtn.className = isReserved ? "boton-activo" : ""
+    console.log(reservarBtn, isReserved)
+
+    
     reservarBtn.addEventListener("click", () => {
-      reservarBtn.className = isReserved ? "" : "boton-activo";
-      reservarBtn.textContent = isReserved ? "Reservar" : "Reservado";
-      isReserved = !isReserved;
+      // Cambiamos visualmente el botón
+      //ternario: 1. condicion 2. parte verdadera (true) 3. parte falsa(false)
+      reservarBtn.className = isReserved ? "" : "boton-activo"
+      reservarBtn.textContent = isReserved ? "Reservar" : "Reservado"
+
+      // Invertimos el estado de reserva
+      isReserved = !isReserved
+
+      // Actualizamos el localStorage
       const reservedStorageString =
-        localStorage.getItem("reservedStorage") || "{}";
-      const reservedStorage = JSON.parse(reservedStorageString);
-      reservedStorage[destino.id] = isReserved;
-      localStorage.setItem("reservedStorage", JSON.stringify(reservedStorage));
-    });
-    destinoCard.appendChild(reservarBtn);
+        localStorage.getItem("reservedStorage") || "{}"
+      const reservedStorage = JSON.parse(reservedStorageString)
+      reservedStorage[destino.id] = isReserved // Guardamos el estado actualizado
+      localStorage.setItem("reservedStorage", JSON.stringify(reservedStorage))
+    })
 
-    app.appendChild(destinoCard);
-  });
+    // Agregamos el botón a la tarjeta
+    destinoCard.appendChild(reservarBtn)
+
+    // Finalmente, agregamos la tarjeta al contenedor principal en el DOM
+    app.appendChild(destinoCard)
+  })
 }
-
-
-//SI HAY LOCAL
