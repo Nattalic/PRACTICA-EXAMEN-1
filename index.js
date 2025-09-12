@@ -25,7 +25,7 @@ function mostrarDestinos(destinos) {
             <h2>${destino.destino}</h2>
             <img src=${destino.imagen} />
             <h3>Tiempo de duración: ${destino.duracion} semanas</h3>
-            <h4>${destino.costo}</h4>
+            <h4>$${destino.costo}</h4>
             <p>${destino.descripcion}</p>
             <p>${destino.actividades}</p>
             <p>${destino.calificacion}</p>
