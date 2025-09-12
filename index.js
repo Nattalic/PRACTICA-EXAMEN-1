@@ -27,12 +27,15 @@ function mostrarDestinos(destinos) {
             <p>${destino.alojamiento}</p>
         `;
 
+
+    //crear boton de reservado
     const reservarBtn = document.createElement("button");
 
     const reservedStorageString =
       localStorage.getItem("reservedStorage") || "{}";
     const reservedStorage = JSON.parse(reservedStorageString);
 
+    //para que el boton cambie de color al darle click y que cambie el texto
     let isReserved = destino.reservado; // Por defecto toma lo que dice el JSON
     reservarBtn.textContent = isReserved ? "Reservado" : "Reservar"; // Lo mismo acá
 
@@ -61,3 +64,6 @@ function mostrarDestinos(destinos) {
     app.appendChild(destinoCard);
   });
 }
+
+
+//SI HAY LOCAL
